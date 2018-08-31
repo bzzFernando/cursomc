@@ -27,6 +27,8 @@ public class CursomcApplication implements CommandLineRunner{
 	public static void main(String[] args) {
 		
 		SpringApplication.run(CursomcApplication.class, args);
+		
+		
 	
 	}
 	
@@ -48,5 +50,6 @@ public class CursomcApplication implements CommandLineRunner{
 		
 		caterogiaRepository.saveAll(Arrays.asList(cat1 ,cat2));
 		produtosRepository.saveAll(Arrays.asList(p1,p2,p3));
+		
 	}
 }
