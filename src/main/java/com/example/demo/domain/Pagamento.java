@@ -3,14 +3,18 @@ package com.example.demo.domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.example.demo.domain.enums.EstadoPagamento;
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Pagamento implements Serializable {
 
 	
@@ -20,13 +24,13 @@ public class Pagamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private EstadoPagamento estado;
+	private Integer estado;
 	
-	@OneToOne
+	@OneToOne(mappedBy="pagamento")
 	@JoinColumn(name="pedido_id")
-	@MapsId
-	private Pedido pedido;
+	private Pedido pedido; 
 	
 	
 	//Constructor
@@ -37,7 +41,7 @@ public class Pagamento implements Serializable {
 	public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
 		super();
 		this.id = id;
-		this.estado = estado;
+		this.estado = estado.getCod();
 	}
 
 	//Getters e Setters
@@ -50,11 +54,11 @@ public class Pagamento implements Serializable {
 	}
 
 	public EstadoPagamento getEstado() {
-		return estado;
+		return EstadoPagamento.toEnum(estado);
 	}
 
 	public void setEstado(EstadoPagamento estado) {
-		this.estado = estado;
+		this.estado = estado.getCod();
 	}
 
 	public Pedido getPedido() {

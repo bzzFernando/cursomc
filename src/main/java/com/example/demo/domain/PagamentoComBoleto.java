@@ -2,8 +2,11 @@ package com.example.demo.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+
 import com.example.demo.domain.enums.EstadoPagamento;
 
+@Entity
 //Herança com pagamento sendo classe pai
 public class PagamentoComBoleto extends Pagamento {
 

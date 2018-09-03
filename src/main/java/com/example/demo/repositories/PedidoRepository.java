@@ -1,13 +1,12 @@
 package com.example.demo.repositories;
 
 import org.springframework.stereotype.Repository;
-import com.example.demo.domain.Produto;
+import com.example.demo.domain.Pedido;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
  
 @Repository
-public interface ProdutosRepository extends JpaRepository<Produto, Integer> {
+public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
 	
-
 }
