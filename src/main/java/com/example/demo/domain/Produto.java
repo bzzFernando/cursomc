@@ -2,7 +2,9 @@ package com.example.demo.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,6 +39,9 @@ public class Produto implements Serializable {
 			)
 	private List<Categorias> categorias = new ArrayList<>();
 	
+
+	private Set<ItemPedido> itens = new HashSet<>();
+	
 	
 	//Constructors
 	public Produto() {
@@ -51,6 +56,15 @@ public class Produto implements Serializable {
 	}
 
 
+	public List<Pedido> getPedidos(){
+		
+		List<Pedido> lista = new ArrayList<>();
+		for (ItemPedido x : itens) {
+			lista.add(x.getPedido());
+		}
+		
+		return lista;
+	}
 
 
 	//Getter e Setters
@@ -84,6 +98,14 @@ public class Produto implements Serializable {
 
 	public void setCategorias(List<Categorias> categorias) {
 		this.categorias = categorias;
+	}
+
+	public Set<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemPedido> itens) {
+		this.itens = itens;
 	}
 
 	
