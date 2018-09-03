@@ -6,8 +6,8 @@ import javax.persistence.Entity;
 
 import com.example.demo.domain.enums.EstadoPagamento;
 
-@Entity
 //Herança com pagamento sendo classe pai
+@Entity
 public class PagamentoComBoleto extends Pagamento {
 
 	private static final long serialVersionUID = 1L;

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.example.demo.domain.enums.EstadoPagamento;
@@ -24,12 +25,12 @@ public class Pagamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private Integer estado;
 	
-	@OneToOne(mappedBy="pagamento")
+	@OneToOne
 	@JoinColumn(name="pedido_id")
+	@MapsId
 	private Pedido pedido; 
 	
 	
@@ -42,6 +43,7 @@ public class Pagamento implements Serializable {
 		super();
 		this.id = id;
 		this.estado = estado.getCod();
+		this.pedido = pedido;
 	}
 
 	//Getters e Setters

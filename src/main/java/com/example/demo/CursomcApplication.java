@@ -140,7 +140,7 @@ public class CursomcApplication implements CommandLineRunner{
 		cli1.getPedidos().addAll(Arrays.asList(pedido1, pedido2));
 		
 		pedidoRepository.saveAll(Arrays.asList(pedido1, pedido2));
-		pagametoRepository.saveAll(Arrays.asList(pag1, pag2));
+		//pagametoRepository.saveAll(Arrays.asList(pag1, pag2));
 			
 	}
 }
