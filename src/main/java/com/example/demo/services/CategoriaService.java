@@ -30,4 +30,11 @@ public class CategoriaService {
 		obj.setId(null);
 		return repo.save(obj);
 	}
+	
+	public Categorias update(Categorias obj) throws ObjectNotFoundException {
+		
+		buscar(obj.getId());
+		return repo.save(obj);
+		
+	}
 }
