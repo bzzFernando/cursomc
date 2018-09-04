@@ -3,10 +3,12 @@ package com.example.demo.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.Categorias;
 import com.example.demo.repositories.CategoriaRepository;
+import com.example.demo.services.exception.DataIntegrityException;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
@@ -36,6 +38,18 @@ public class CategoriaService {
 		
 		select(obj.getId());
 		return repo.save(obj);
+	}
+	
+	public void delete(Integer id) throws ObjectNotFoundException {
+		
+		select(id);
+		try {
+			repo.deleteById(id);
+		}catch(DataIntegrityException e) {
+			
+			throw new DataIntegrityViolationException("Não é possivle excluir uma categoria que possui produtos cadastrados");
+		}
 		
 	}
 }
+
