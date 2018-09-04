@@ -13,6 +13,7 @@ import com.example.demo.domain.Cidade;
 import com.example.demo.domain.Cliente;
 import com.example.demo.domain.Endereco;
 import com.example.demo.domain.Estado;
+import com.example.demo.domain.ItemPedido;
 import com.example.demo.domain.Pagamento;
 import com.example.demo.domain.PagamentoComBoleto;
 import com.example.demo.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.example.demo.repositories.CidadeRepository;
 import com.example.demo.repositories.ClienteRepository;
 import com.example.demo.repositories.Enderecorepository;
 import com.example.demo.repositories.EstadoRepository;
+import com.example.demo.repositories.ItemPedidoRepository;
 import com.example.demo.repositories.PagametoRepository;
 import com.example.demo.repositories.PedidoRepository;
 import com.example.demo.repositories.ProdutosRepository;
@@ -52,6 +54,8 @@ public class CursomcApplication implements CommandLineRunner{
 	private PedidoRepository pedidoRepository;
     @Autowired
     private PagametoRepository pagametoRepository;
+    @Autowired
+    private ItemPedidoRepository itemPedidoRepository;
     
 
 	public static void main(String[] args) {
@@ -140,7 +144,21 @@ public class CursomcApplication implements CommandLineRunner{
 		cli1.getPedidos().addAll(Arrays.asList(pedido1, pedido2));
 		
 		pedidoRepository.saveAll(Arrays.asList(pedido1, pedido2));
-		//pagametoRepository.saveAll(Arrays.asList(pag1, pag2));
-			
+		pagametoRepository.saveAll(Arrays.asList(pag1, pag2));
+		
+		ItemPedido ip1 = new ItemPedido(pedido1, p1, 0.00, 1,2000.00);
+		ItemPedido ip2 = new ItemPedido(pedido2, p2, 0.00, 1, 1000.00);
+		ItemPedido ip3 = new ItemPedido(pedido1, p3, 100.00, 1, 800.00);
+		
+		pedido1.getItens().addAll(Arrays.asList(ip1,ip3));
+		pedido2.getItens().addAll(Arrays.asList(ip2));
+		
+		
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip2));
+		p3.getItens().addAll(Arrays.asList(ip3));
+		
+		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
+		
 	}
 }
