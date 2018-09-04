@@ -17,7 +17,7 @@ public class ProdutoService {
 	@Autowired
 	private ProdutosRepository repo;
 	
-	public Produto find(Integer id) throws ObjectNotFoundException {
+	public Produto select(Integer id) throws ObjectNotFoundException {
 		
 		Optional<Produto> obj = repo.findById(id);
 		

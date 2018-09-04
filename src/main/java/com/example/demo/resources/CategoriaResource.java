@@ -28,11 +28,10 @@ public class CategoriaResource {
 	
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
-	public ResponseEntity<Categorias> find(@PathVariable Integer id) throws ObjectNotFoundException {
+	public ResponseEntity<Categorias> select(@PathVariable Integer id) throws ObjectNotFoundException {
 		
-		Categorias obj = service.buscar(id);
-		return ResponseEntity.ok().body(obj);
-		
+		Categorias obj = service.select(id);
+		return ResponseEntity.ok().body(obj);	
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
