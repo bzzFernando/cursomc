@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,11 @@ public class CategoriaService {
 			throw new DataIntegrityViolationException("Não é possivle excluir uma categoria que possui produtos cadastrados");
 		}
 		
+	}
+	
+	public List<Categorias> selectAll(){
+		
+		return repo.findAll();
 	}
 }
 
